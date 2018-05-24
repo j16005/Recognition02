@@ -2,9 +2,12 @@ package recognition02;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.VisualRecognition;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifiedImages;
 import com.ibm.watson.developer_cloud.visual_recognition.v3.model.ClassifyOptions;
@@ -32,6 +35,33 @@ public class Recognition02_main {
 		ClassifiedImages result = service.classify(classifyOptions).execute();
 		System.out.println(result);
 
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode node=null;
+		try{
+			node = mapper.readTree(result.toString());
+		}catch (IOException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
+		String classes_class0=node.get("images").get(0).get("classifiers").get(0).
+				get("classes").get(0).get("class").asText();
+		System.out.println("class :"+classes_class0);
+		double classes_score0=node.get("images").get(0).get("classifiers").get(0).
+				get("classes").get(0).get("score").asDouble();
+		System.out.println("score :"+classes_score0);
+		String classes_class1=node.get("images").get(0).get("classifiers").get(0).
+				get("classes").get(1).get("class").asText();
+		System.out.println("class :"+classes_class1);
+		double classes_score1=node.get("images").get(0).get("classifiers").get(0).
+				get("classes").get(1).get("score").asDouble();
+		System.out.println("score :"+classes_score1);
+		String classes_class2=node.get("images").get(0).get("classifiers").get(0).
+				get("classes").get(2).get("class").asText();
+		System.out.println("class :"+classes_class2);
+		double classes_score2=node.get("images").get(0).get("classifiers").get(0).
+				get("classes").get(2).get("score").asDouble();
+		System.out.println("score :"+classes_score2);
 	}
 
 }
