@@ -44,24 +44,26 @@ public class Recognition02_main {
 			e.printStackTrace();
 		}
 
-		String classes_class0=node.get("images").get(0).get("classifiers").get(0).
+		String class0=node.get("images").get(0).get("classifiers").get(0).
 				get("classes").get(0).get("class").asText();
-		System.out.println("class :"+classes_class0);
-		double classes_score0=node.get("images").get(0).get("classifiers").get(0).
+		System.out.println("class :"+class0);
+		double score0=node.get("images").get(0).get("classifiers").get(0).
 				get("classes").get(0).get("score").asDouble();
-		System.out.println("score :"+classes_score0);
-		String classes_class1=node.get("images").get(0).get("classifiers").get(0).
+		System.out.println("score :"+score0);
+		String class1=node.get("images").get(0).get("classifiers").get(0).
 				get("classes").get(1).get("class").asText();
-		System.out.println("class :"+classes_class1);
-		double classes_score1=node.get("images").get(0).get("classifiers").get(0).
+		System.out.println("class :"+class1);
+		double score1=node.get("images").get(0).get("classifiers").get(0).
 				get("classes").get(1).get("score").asDouble();
-		System.out.println("score :"+classes_score1);
-		String classes_class2=node.get("images").get(0).get("classifiers").get(0).
+		System.out.println("score :"+score1);
+		String class2=node.get("images").get(0).get("classifiers").get(0).
 				get("classes").get(2).get("class").asText();
-		System.out.println("class :"+classes_class2);
-		double classes_score2=node.get("images").get(0).get("classifiers").get(0).
+		System.out.println("class :"+class2);
+		double score2=node.get("images").get(0).get("classifiers").get(0).
 				get("classes").get(2).get("score").asDouble();
-		System.out.println("score :"+classes_score2);
+		System.out.println("score :"+score2);
+		MySQL mysql = new MySQL();
+		mysql.updateImage(class0,score0,class1,score1,class2,score2);
 	}
 
 }
